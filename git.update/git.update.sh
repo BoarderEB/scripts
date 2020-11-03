@@ -2,7 +2,7 @@
 ##READ FROM GIT-LIST FILE AND PULL ALL
 ##STRUCTURE git.LIST
 ##/path/to/git/root/:branch
-file="git.list"
+file="/etc/git/git.list"
 while IFS=: read -r f1 f2
 do
   ##CHECK IF PATH OF LINE IS NOT EMPTY
