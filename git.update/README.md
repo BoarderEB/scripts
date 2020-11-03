@@ -1,6 +1,6 @@
 # Update git repository by Cron-Script
 
-**Caution:** All local changes are discarded if not excluded by .gitignore
+**Caution:** All local changes are discarded if not excluded by [.gitignore](https://git-scm.com/docs/gitignore).
 
 * change path to git.list in git.update.sh
 * chmod +x git.update.sh
