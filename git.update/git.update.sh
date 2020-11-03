@@ -3,6 +3,12 @@
 ##STRUCTURE git.LIST
 ##/path/to/git/root/:branch
 file="/etc/git/git.list"
+
+if [ ! -f "$file" ]; then
+    echo "$file don't exists. Exit"
+    exit 1
+else 
+
 while IFS=: read -r f1 f2
 do
   ##CHECK IF PATH OF LINE IS NOT EMPTY
