@@ -17,6 +17,7 @@ do
     if [[  ! -z "$f2"  ]]; then
       ##CHECK IF PATH OF LINE EXISTS
       if [[ -d "$f1" ]]; then
+        echo "Update $f1 in $f2"
         git -C "$f1" fetch --all && git -C "$f1" checkout "$f2" && git -C "$f1" reset --hard "$f2" && git -C "$f1" pull
       else
         ##CHECK IF LINE IS NOT COMMENDET OUT
