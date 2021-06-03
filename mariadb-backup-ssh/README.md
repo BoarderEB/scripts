@@ -1,9 +1,11 @@
 # Mariadb (Mysql) backup script to sftp/ssh server
 
 sshfs is used for the script 
-> apt install sshfs 
+```
+apt install sshfs 
+```
 
-##min to do
+## min to do
 
 ### my.cnf
 Copy my.cnf to /user/my.cnf and add the username and password in [client] and [mysqldump]
@@ -17,7 +19,9 @@ Copy my.cnf to /user/my.cnf and add the username and password in [client] and [m
 
 ### create a ssh-key or copy a ssh-key to the server
 create with 
-> ssh-keygen -t ed25519 
+```
+ssh-keygen -t ed25519 
+```
 
 ### copy ssh-id.pub to the remote server
 for sftp:
@@ -27,7 +31,9 @@ echo -e "mkdir .ssh \n chmod 700 .ssh \n put id_ed25519.pub .ssh/authorized_keys
 ```
 
 for ssh:
-> ssh-copy-id -i ~/.ssh/id_ed25519.pub user@server 
+```
+ssh-copy-id -i ~/.ssh/id_ed25519.pub user@server 
+```
 
 ## Cron-Backup
 
@@ -47,19 +53,23 @@ If you want to have more than one backup loop. Then modify in the scriptcopys in
 The encrypted backup export is highly recommended!
 
 Install gpg
-> apt install gpg2
-
+```
+apt install gpg2
+```
 ### Import or create a gpg-key
 
 Creat the key with: (use "RSA and RSA (default)" and "4096 keysize")
-> gpg2 --full-gen-key 
-
+```
+gpg2 --full-gen-key 
+```
 and export the private key and store it in a safe place 
-> gpg2 -a --output gpg-secret-key.asc --export-secret-keys <privat-key-id>
-
+```
+gpg2 -a --output gpg-secret-key.asc --export-secret-keys <privat-key-id>
+```
 or import the public key with
-> gpg2 --import gpg-pub-key.asc
-
+```
+gpg2 --import gpg-pub-key.asc
+```
 ### Activate gpg in the script 
 
 If you like to export the vm encoding with GPG you must set this:
@@ -69,5 +79,6 @@ Also you must set the GPG-Key-ID or the Name of the key to be used for encryptio
   - GPGID="key-id or Name"
 
 if you have only 1 gpg-public-key on the system, you find the key-id with this:
-> gpg2 --list-public-keys --keyid-format LONG | grep 'pub ' | cut -d' ' -f4 | cut -d'/' -f2
-
+```
+gpg2 --list-public-keys --keyid-format LONG | grep 'pub ' | cut -d' ' -f4 | cut -d'/' -f2
+```
