@@ -1,8 +1,8 @@
 # Mariadb (Mysql) backup script to sftp/ssh server
 
-## min to do
+## Min to do
 
-**Sshfs** is used for the script 
+**Sshfs** is used for the script, install it:
 ```
 apt install sshfs 
 ```
