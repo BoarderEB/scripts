@@ -1,29 +1,29 @@
 # Mariadb (Mysql) backup script to sftp/ssh server
 
-sshfs is used for the script 
+## min to do
+
+**Sshfs** is used for the script 
 ```
 apt install sshfs 
 ```
 
-## min to do
+### My.cnf
+Copy *my.cnf* to */home/user/.my.cnf* and add the username and password for the mariadb-Server in [client] and [mysqldump]
 
-### my.cnf
-Copy my.cnf to /user/my.cnf and add the username and password in [client] and [mysqldump]
-
-### change in the script:
+### Change in the script:
 
 - USERNAME="username"
 - SERVER_IP="remote.server.eu"
 - RemoteFileLocation="/"
 - MAXBACKUPS="1"
 
-### create a ssh-key or copy a ssh-key to the server
+### Create a ssh-key or copy a ssh-key to the server
 create with 
 ```
 ssh-keygen -t ed25519 
 ```
 
-### copy ssh-id.pub to the remote server
+### Copy ssh-id.pub to the remote server
 for sftp:
 ```
 cd ~/.ssh/
@@ -52,7 +52,20 @@ If you want to have more than one backup loop. Then modify in the scriptcopys in
 
 The encrypted backup export is highly recommended!
 
-Install gpg
+### Activate gpg in the script 
+
+If you like to export the vm encoding with GPG you must set this:
+  - GPG="true"
+
+Also you must set the GPG-Key-ID or the Name of the key to be used for encryption.
+  - GPGID="key-id or Name"
+
+if you have only 1 gpg-public-key on the system, you find the key-id with this:
+```
+gpg2 --list-public-keys --keyid-format LONG | grep 'pub ' | cut -d' ' -f4 | cut -d'/' -f2
+```
+
+### Install gpg
 ```
 apt install gpg2
 ```
@@ -70,15 +83,4 @@ or import the public key with
 ```
 gpg2 --import gpg-pub-key.asc
 ```
-### Activate gpg in the script 
 
-If you like to export the vm encoding with GPG you must set this:
-  - GPG="true"
-
-Also you must set the GPG-Key-ID or the Name of the key to be used for encryption.
-  - GPGID="key-id or Name"
-
-if you have only 1 gpg-public-key on the system, you find the key-id with this:
-```
-gpg2 --list-public-keys --keyid-format LONG | grep 'pub ' | cut -d' ' -f4 | cut -d'/' -f2
-```
