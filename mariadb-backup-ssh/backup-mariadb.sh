@@ -53,7 +53,7 @@ MOUNTPOINT=$(echo "/mnt/$INTRANDOME")
 DATE=$(date +%Y-%m-%d)
 MAILFILE=$(mktemp /tmp/mail.XXXXXXXXX)
 SCRIPT="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-IGNORE="phpmyadmin|mysql|information_schema|performance_schema|test|Warning"
+IGNORE="phpmyadmin|mysql|information_schema|performance_schema|test|Warning|sys"
 
 ### LOGGERMASSAGE function
 ### Var1: LOGGERMASSAGE LOGLEVEL "LOGMASSAGE"
