@@ -2,7 +2,7 @@
 #
 # Fork: Boardereb
 # GPLv2+
-# V: 0.01-Beta1
+# V: 0.90b
 
 ### To change:
 
