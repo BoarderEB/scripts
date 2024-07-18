@@ -222,7 +222,7 @@ if [[ ! -d ${BACKUPPATH} ]]; then
 fi
 
 ### Fetching list UUIDs of all VMs running on XenServer
-DBS="$(mysql --defaults-extra-file=$CONF -Bse 'show databases' | /bin/grep -Ev $IGNORE)"
+DBS="$(mariadb --defaults-extra-file=$CONF -Bse 'show databases' | /bin/grep -Ev $IGNORE)"
 if [[ -z ${DBS} ]]; then
 	LOGGERMASSAGE 0 "Error: No Databases found for backup"
 	QUIT 1
@@ -231,7 +231,7 @@ fi
 for DB in $DBS; do
     if [[ $GPG == "true" ]]; then
         LOGGERMASSAGE "Start export of $DB gpg encodet"
-        mysqldump --defaults-extra-file=$CONF --databases $DB | gpg2 --encrypt -a --recipient $GPGID --trust-model always >  "$BACKUPPATH/$DB-$DATE.sql.gpg"
+        mariadb-dump --defaults-extra-file=$CONF --databases $DB | gpg2 --encrypt -a --recipient $GPGID --trust-model always >  "$BACKUPPATH/$DB-$DATE.sql.gpg"
         if [[ ${PIPESTATUS[0]} != 0 ]]; then
             EXPORTERROR="true"
             LOGGERMASSAGE 0 "Error: there was a problem exporting the database $DB"
@@ -240,7 +240,7 @@ for DB in $DBS; do
         fi
     else
         LOGGERMASSAGE "Start export of $DB"
-        mysqldump --defaults-extra-file=$CONF --skip-extended-insert --skip-comments --databases $DB >  "$BACKUPPATH/$DB-$DATE.sql" 
+        mariadb-dump --defaults-extra-file=$CONF --skip-extended-insert --skip-comments --databases $DB >  "$BACKUPPATH/$DB-$DATE.sql" 
         if [[ $? -ne 0 ]]; then
             EXPORTERROR="true"
             LOGGERMASSAGE 0 "Error: there was a problem exporting the database $DB"
