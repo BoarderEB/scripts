@@ -8,7 +8,7 @@ apt install sshfs
 ```
 
 ### My.cnf
-Copy *my.cnf* to */home/user/.my.cnf* and add the username and password for the mariadb-Server in [client] and [mysqldump]
+Copy *my.cnf* to */home/user/.my.cnf* and add the username and password for the mariadb-Server in [client] and [mariadb-dump]
 
 ### Change in the script:
 
