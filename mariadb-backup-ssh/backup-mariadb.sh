@@ -47,7 +47,7 @@ SYSLOGER="true"
 
 ### int. Variablen
 
-BACKUPNAME=$(echo "mysql-$HOSTNAME")
+BACKUPNAME=$(echo "mariadb-$HOSTNAME")
 INTRANDOME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 MOUNTPOINT=$(echo "/mnt/$INTRANDOME")
 DATE=$(date +%Y-%m-%d)

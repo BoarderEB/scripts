@@ -42,11 +42,11 @@ For an automatic backup copy the script to one of this:
 
 If you want to have more than one backup loop. Then modify in the scriptcopys in /etc/cron.* :
 
-* BACKUPNAME=$(echo "mysql-$HOSTNAME") to like this:
+* BACKUPNAME=$(echo "mariadb-$HOSTNAME") to like this:
 
-- BACKUPNAME=$(echo "mysql-$HOSTNAME-daily")
-- BACKUPNAME=$(echo "mysql-$HOSTNAME-weekly")
-- BACKUPNAME=$(echo "mysql-$HOSTNAME-monthly")
+- BACKUPNAME=$(echo "mariadb-$HOSTNAME-daily")
+- BACKUPNAME=$(echo "mariadb-$HOSTNAME-weekly")
+- BACKUPNAME=$(echo "mariadb-$HOSTNAME-monthly")
 
 ## PGP encoding
 
