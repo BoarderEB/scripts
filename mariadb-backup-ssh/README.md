@@ -1,4 +1,4 @@
-# Mariadb (Mysql) backup script to sftp/ssh server
+# Mariadb backup script to sftp/ssh server
 
 ## Min to do
 
