@@ -93,6 +93,15 @@ check_updater_server() {
     log "Wartungsmodus bleibt aktiv – Fehler ist aufgetreten"
   fi
 
+  # survey_client deaktivieren = Tracking von Nextcloud (wird nach Update oft reaktiviert)
+  if [ "$ERRORFLAG" -eq 0 ]; then
+    if sudo -u www-data $PHP $NEXTCLOUD_DIR/occ app:disable survey_client; then
+      log "survey_client deaktiviert"
+    else
+      log "Warnung: survey_client konnte nicht deaktiviert werden"
+    fi
+  fi
+
   log "=== Nextcloud Update beendet: $(date) ==="
 
 } > "$LOGFILE" 2>&1
